@@ -2,7 +2,7 @@ package com.amdocs.Food.order.Controller;
 
 import com.amdocs.Food.order.DTO.FoodMenuDTO;
 import com.amdocs.Food.order.DTO.UserCartDTO;
-import com.amdocs.Food.order.Entity.Menu;
+import com.amdocs.Food.order.Entity.Category;
 import com.amdocs.Food.order.Entity.Product;
 import com.amdocs.Food.order.Entity.UserCart;
 import com.amdocs.Food.order.Repository.CartRepository;
@@ -33,10 +33,10 @@ public class FoodOrderController {
     @Autowired
     FoodMenuDao foodMenuDao;
 
-    @GetMapping(value = "/menu/{foodType}")
+    @GetMapping(value = "/menu/{categoryName}")
     @ResponseBody
-    public FoodMenuDTO getFoodMenu(@PathVariable("foodType") String foodType) {
-        Menu menu = foodMenuDao.getFoodMenu(foodType);
+    public FoodMenuDTO getFoodMenu(@PathVariable("categoryName") String categoryName) {
+        Category menu = foodMenuDao.getFoodMenu(categoryName);
         return new FoodMenuDTO(menu);
     }
 

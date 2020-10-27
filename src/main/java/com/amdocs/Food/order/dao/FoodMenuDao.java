@@ -1,8 +1,8 @@
 package com.amdocs.Food.order.dao;
 
-import com.amdocs.Food.order.Entity.Menu;
+import com.amdocs.Food.order.Entity.Category;
 
 public interface FoodMenuDao {
 
-    Menu getFoodMenu(String foodType);
+    Category getFoodMenu(String categoryName);
 }

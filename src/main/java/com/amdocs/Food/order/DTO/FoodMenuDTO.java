@@ -1,7 +1,10 @@
 package com.amdocs.Food.order.DTO;
 
-import com.amdocs.Food.order.Entity.Menu;
+import com.amdocs.Food.order.Entity.Category;
+import com.amdocs.Food.order.Entity.Product;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,15 +13,14 @@ import lombok.*;
 @Builder
 public class FoodMenuDTO {
 
-    private String foodType;
+    private Integer foodType;
     private String foodItem;
-    private Double price;
+    private List<Product> price;
 
-    public FoodMenuDTO(Menu menu) {
-
-        this.foodType = menu.getFoodType();
-        this.foodItem = menu.getFoodItem();
-        this.price = menu.getPrice();
+    public FoodMenuDTO(Category menu) {
+        this.foodType = menu.getCategoryId();
+        this.foodItem = menu.getCategoryName();
+        this.price = menu.getProducts();
     }
 
 }

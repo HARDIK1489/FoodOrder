@@ -1,6 +1,6 @@
 package com.amdocs.Food.order.dao.impl;
 
-import com.amdocs.Food.order.Entity.Menu;
+import com.amdocs.Food.order.Entity.Category;
 import com.amdocs.Food.order.Repository.FoodMenuRepository;
 import com.amdocs.Food.order.dao.FoodMenuDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,8 @@ public class FoodMenuDaoImpl implements FoodMenuDao {
     @Autowired
     FoodMenuRepository foodMenuRepository;
 
-   public Menu getFoodMenu(String foodType){
+   public Category getFoodMenu(String categoryName){
 
-       return foodMenuRepository.findByFoodTypeAndIsActiveIsTrue(foodType);
+       return foodMenuRepository.findByCategoryNameAndIsActiveIsTrue(categoryName);
     }
 }

@@ -1,0 +1,29 @@
+create table category ( id int(10) primary key not null auto_increment, name varchar(50));
+
+create table product ( product_id int(10) primary key not null auto_increment, name varchar(50) , price double(10,2), category_id int(10));
+
+alter table product add constraint product_category_id_fk foreign key(category_id) references category( id);
+
+create table user(user_id int(10) primary key not null auto_increment, fname varchar(10), lname varchar(10), email_id varchar(50), phone int(10));
+
+alter table userorder add constraint order_user_id_fk foreign key(user_id) references user(user_id);
+
+create table orderItems ( item_id int(10) primary key not null auto_increment, name varchar(50), quantity int(2), order_id int(10));
+
+alter table orderItems add constraint order_id_fk foreign key(order_id) references userorder(order_id);
+
+
+
+insert into category values (1,"APPETIZERS");
+insert into category values (2,"Soups and Salads");
+insert into category values (3,"Tandoori Breads");
+insert into category values (4,"Side Orders");
+insert into category values (5,"Vegetable Delights");
+insert into category values (6,"Beverages");
+insert into category values (7,"Deserts");
+
+
+insert into product values(17,"PAKORA ",170,1);
+insert into product values (9, "Veg Salad",80, 2);
+insert into product values(12,"Plain Yogurt",35,4);
+insert into product values(22,"KHEER",90,7);

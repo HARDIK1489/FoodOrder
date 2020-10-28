@@ -47,7 +47,7 @@ public class FoodOrderController {
                                 @RequestParam(value = "quantity", required = true) Integer quantity)
     {
 
-        Product product = this.productDao.getProductDetails(productId);
+        Product product = productDao.getProductDetails(productId);
 
         if (product == null) {
             return "Product ID invalid";
@@ -61,7 +61,7 @@ public class FoodOrderController {
 
     @GetMapping(value = "/{userId}/cart")
     @ResponseBody
-    public List<UserCartDTO> cartItems( @PathVariable("userId") Long userId) throws IOException
+    public List<UserCartDTO> cartItems( @PathVariable("userId") Long userId)
     {
         List<UserCart> userCartList = userDao.getCartInfo(userId);
 
@@ -76,12 +76,13 @@ public class FoodOrderController {
     }
 
 
-    //    @GetMapping(value = "/placeOrder")
-//    @ResponseBody
-//    public String placeOrder(@RequestBody Integer id)
-//    {
-//
-// }
+    @GetMapping(value = "/placeOrder")
+    @ResponseBody
+    public String placeOrder(@RequestBody Integer id)
+    {
+
+    }
+
 //    @GetMapping(value = "/cancelOrder")
 //    @ResponseBody
 //    public String cancelOrder( @RequestBody Integer id)

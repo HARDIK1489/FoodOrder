@@ -15,12 +15,12 @@ public class FoodMenuDTO {
 
     private Integer foodType;
     private String foodItem;
-    private List<Product> price;
+    private List<Product> products;
 
     public FoodMenuDTO(Category menu) {
         this.foodType = menu.getCategoryId();
         this.foodItem = menu.getCategoryName();
-        this.price = menu.getProducts();
+        this.products = menu.getProducts();
     }
 
 }

@@ -12,7 +12,7 @@ public class ProductDTO {
     private Long productId;
     private String productName;
     private double price;
-    private Integer categoryId;
+    private Category categoryId;
 
     public ProductDTO(Product product) {
 

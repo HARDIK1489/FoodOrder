@@ -14,6 +14,6 @@ public class FoodMenuDaoImpl implements FoodMenuDao {
 
    public Category getFoodMenu(String categoryName){
 
-       return foodMenuRepository.findByCategoryNameAndIsActiveIsTrue(categoryName);
+       return foodMenuRepository.findByNameAndIsActiveIsTrue(categoryName);
     }
 }

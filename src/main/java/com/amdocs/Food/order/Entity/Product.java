@@ -23,8 +23,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Integer categoryId;
-
+    private Category categoryId;
 
     public Long getProductId() {
         return productId;
@@ -38,10 +37,9 @@ public class Product {
         return price;
     }
 
-    public Integer getCategoryId() {
+    public Category getCategoryId() {
         return categoryId;
     }
-
 
     public void setProductId(Long productId) {
         this.productId = productId;
@@ -55,7 +53,7 @@ public class Product {
         this.price = price;
     }
 
-    public void setCategoryId(Integer categoryId) {
+    public void setCategoryId(Category categoryId) {
         this.categoryId = categoryId;
     }
 

@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FoodMenuRepository extends CrudRepository<Category,String>{
 
-    Category findByCategoryNameAndIsActiveIsTrue(String categoryName);
+    Category findByNameAndIsActiveIsTrue(String categoryName);
 }

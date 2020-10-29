@@ -17,7 +17,8 @@ public class Order {
     @Column(name = "order_id")
     private Long orderId;
 
-    @Column(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private Long userId;
 
     @OneToMany(mappedBy = "orderId")

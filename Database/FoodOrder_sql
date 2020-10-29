@@ -1,0 +1,47 @@
+create table category ( id int(10) primary key not null auto_increment, name varchar(50));
+
+create table product ( product_id int(10) primary key not null auto_increment, name varchar(50) , price double(10,2), category_id int(10), description varchar(1000));
+
+alter table product add constraint product_category_id_fk foreign key(category_id) references category( id);
+
+create table order(order_id bigint(11) primary key not null auto_increment, user_id bigint(11) , total_prize double(10,2));
+
+create table userProfile(user_id bigint(11) primary key not null auto increment, name varchar(50) , contact_number bigint(11), address varchar(50));
+
+alter table order add constraint order_user_id_fk foreign key(user_id) reference userProfile(user_id);
+
+create table userCart(id int(11) primary key not null auto_increment,user_id bigint(11),product_id bigint(11),quantity int(11));
+
+create table orderTrackInfo(order_id primary key not null auto_increment , order_placed varchar(50), order_out_for_delivery varchar(50),order_delivered varchar(50), payment_received varchar(50));
+
+
+insert into category values (1,"APPETIZERS");
+insert into category values (2,"Soups and Salads");
+insert into category values (3,"Tandoori Breads");
+insert into category values (4,"Vegetable Delights");
+insert into category values (5,"Beverages");
+insert into category values (6,"Deserts");
+insert into category values (7,"Side Orders");
+
+
+insert into product values (1, "CHEESE PAKORA",100, 1);
+insert into product values(2,"PANEER TIKKA ",150,1);
+
+insert into product values (15, "VEG SALAD",60, 2);
+insert into product values (16, "CUCUMBER SALAD",40, 2);
+
+insert into product values (20, "MISSI ROTI",12, 3);
+insert into product values (21, "PLAIN ROTI",8, 3);
+
+insert into product values (27, "DAL MAKHANI",130, 4);
+insert into product values (28, "SHAHI PANEER",180, 4);
+
+insert into product values (35, "COKE",60, 5);
+insert into product values (36, "VIRGIN MOJITO",100, 5);
+
+insert into product values(50,"GULAB JAMUN",25,6);
+insert into product values(51,"KHEER",90,6);
+
+insert into product values(70,"RAITA",35,7);
+insert into product values(71,"Plain Yogurt",25,7);
+

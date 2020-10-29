@@ -1,5 +1,6 @@
 package com.amdocs.Food.order.Entity;
 
+import com.amdocs.Food.order.DTO.UserCartDTO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,30 +14,48 @@ import java.util.List;
 public class Order {
 
     @Id
-    @Column(
-            name = "id"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    private Long id;
+    @Column(name = "order_id")
+    private Long orderId;
 
-    @Column(
-            name = "customerName",
-            columnDefinition = "VARCHAR(11)"
-    )
-    private String customerName;
+    @Column(name = "user_id")
+    private Long userId;
 
-    @Column(
-            name = "contactNumber",
-            columnDefinition = "BIGINT(11)"
-    )
-    private Long contactNumber;
+    @OneToMany(mappedBy = "orderId")
+    private List<UserCartDTO> cartItems;
 
-    @Column(
-            name = "Order",
-            columnDefinition = "VARCHAR(11)"
-    )
-    private List<String> order;
+    @Column(name = "total_price")
+    private Double totalPrice;
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public List<UserCartDTO> getCartItems() {
+        return cartItems;
+    }
+
+    public void setCartItems(List<UserCartDTO> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
 }

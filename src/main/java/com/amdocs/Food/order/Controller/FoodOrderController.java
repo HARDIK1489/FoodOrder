@@ -1,12 +1,16 @@
 package com.amdocs.Food.order.Controller;
 
 import com.amdocs.Food.order.DTO.FoodMenuDTO;
+import com.amdocs.Food.order.DTO.OrderTrackDTO;
+import com.amdocs.Food.order.DTO.ProductDTO;
 import com.amdocs.Food.order.DTO.UserCartDTO;
 import com.amdocs.Food.order.Entity.Category;
 import com.amdocs.Food.order.Entity.Product;
 import com.amdocs.Food.order.Entity.UserCart;
 import com.amdocs.Food.order.Repository.CartRepository;
+import com.amdocs.Food.order.Service.FoodOrderService;
 import com.amdocs.Food.order.dao.FoodMenuDao;
+import com.amdocs.Food.order.dao.OrderDao;
 import com.amdocs.Food.order.dao.ProductDao;
 import com.amdocs.Food.order.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +26,16 @@ import java.util.List;
 public class FoodOrderController {
 
     @Autowired
-    ProductDao productDao;
+    FoodOrderService foodOrderService;
 
     @Autowired
-    UserDao userDao;
-
-    @Autowired
-    CartRepository cartRepository;
-
-    @Autowired
-    FoodMenuDao foodMenuDao;
+    OrderDao orderDao;
 
     @GetMapping(value = "/menu/{categoryName}")
     @ResponseBody
     public FoodMenuDTO getFoodMenu(@PathVariable("categoryName") String categoryName) {
-        Category menu = foodMenuDao.getFoodMenu(categoryName);
-        return new FoodMenuDTO(menu);
+
+        return foodOrderService.getFoodMenu(categoryName);
     }
 
     @PostMapping(value = "/addItemToCart")
@@ -46,65 +44,43 @@ public class FoodOrderController {
                                 @RequestParam(value = "userId", required = true) Long userId ,
                                 @RequestParam(value = "quantity", required = true) Integer quantity)
     {
-
-        Product product = productDao.getProductDetails(productId);
-
-        if (product == null) {
-            return "Product ID invalid";
-        }
-
-        UserCart userCart =new UserCart(userId,productId,quantity);
-        cartRepository.save(userCart);
-
-        return "Item Added To Cart";
+        return foodOrderService.addItemToCart(productId,userId,quantity);
     }
 
     @GetMapping(value = "/{userId}/cart")
     @ResponseBody
     public List<UserCartDTO> cartItems( @PathVariable("userId") Long userId)
     {
-        List<UserCart> userCartList = userDao.getCartInfo(userId);
-
-        List<UserCartDTO> userCartDTOS = null;
-        for (UserCart userCart : userCartList)
-        {
-            UserCartDTO userCartDTO = new UserCartDTO(userCart);
-            userCartDTOS.add(userCartDTO);
-        }
-
-        return userCartDTOS;
+       return foodOrderService.cartItems(userId);
     }
 
 
-    @GetMapping(value = "/placeOrder")
+    @GetMapping(value = "{userId}/placeOrder")
     @ResponseBody
-    public String placeOrder(@RequestBody Integer id)
+    public String placeOrder( @PathVariable("userId") Long userId)
     {
-
+      return foodOrderService.placeOrder(userId);
     }
 
-//    @GetMapping(value = "/cancelOrder")
-//    @ResponseBody
-//    public String cancelOrder( @RequestBody Integer id)
-//    {
-//
-//        return foodOrderService.cancelOrder(id);
-//    }
-//
-//    @GetMapping(value = "/trackOrder")
-//    @ResponseBody
-//    public String trackOrder( @RequestBody Integer id)
-//    {
-//
-//        return foodOrderService.trackOrder(id);
-//    }
-//
-//    @GetMapping(value = "/addNewItem")
-//    @ResponseBody
-//    public String addNewItem( @RequestBody String item)
-//    {
-//
-//        return foodOrderService.addNewItem(item);
-//    }
+    @GetMapping(value = "{userId}/cancelOrder")
+    @ResponseBody
+    public String cancelOrder( @PathVariable("userId") Long userId)
+    {
+        return foodOrderService.cancelOrder(userId);
+    }
+
+   @GetMapping(value = "{userId}/trackOrder")
+   @ResponseBody
+    public OrderTrackDTO trackOrder(@PathVariable("userId") Long userId)
+   {
+        return foodOrderService.trackOrder(userId);
+   }
+
+    @PutMapping(value = "/addNewItem")
+    @ResponseBody
+    public String addNewItem( @RequestBody ProductDTO newProductInfo)
+    {
+        return foodOrderService.addNewItem(newProductInfo);
+    }
 
 }

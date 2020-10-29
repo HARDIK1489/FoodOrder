@@ -1,23 +1,26 @@
 package com.amdocs.Food.order.Service;
 
 import com.amdocs.Food.order.DTO.FoodMenuDTO;
+import com.amdocs.Food.order.DTO.OrderTrackDTO;
+import com.amdocs.Food.order.DTO.ProductDTO;
+import com.amdocs.Food.order.DTO.UserCartDTO;
 
 import java.util.List;
 
 public interface FoodOrderService {
 
-    FoodMenuDTO getFoodMenu(String foodType);
+    FoodMenuDTO getFoodMenu(String categoryName);
 
-    String selectFoodItems(List<String> selectItems, Integer id);
+    String addItemToCart(Long productId, Long userId, Integer quantity);
 
-    List<String> cartItems(Integer id);
+    List<UserCartDTO> cartItems(Long userId);
 
-    List<String> placeOrder( Integer id);
+   String placeOrder(Long userId);
 
-    String cancelOrder( Integer id);
+   String cancelOrder( Long userId);
 
-    String trackOrder( Integer id);
+    OrderTrackDTO trackOrder(Long userId);
 
-    String addNewItem( String item);
+    String addNewItem( ProductDTO newProductInfo);
 
 }

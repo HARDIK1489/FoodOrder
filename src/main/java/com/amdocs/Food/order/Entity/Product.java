@@ -23,6 +23,40 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Category categoryId;
+    private Integer categoryId;
+
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 
 }

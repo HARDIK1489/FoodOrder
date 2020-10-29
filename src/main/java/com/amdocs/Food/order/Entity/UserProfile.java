@@ -12,30 +12,49 @@ import javax.persistence.*;
 public class UserProfile{
 
     @Id
-    @Column(
-            name = "userId"
-    )
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
-    private Integer userId;
+    @Column(name = "userId")
+    private Long userId;
 
-    @Column(
-            name = "name",
-            columnDefinition = "VARCHAR(11)"
-    )
+    @Column(name = "name")
     private String name;
 
-    @Column(
-            name = "contactNumber",
-            columnDefinition = "BIGINT(11)"
-    )
+    @Column(name = "contactNumber")
     private Long contactNumber;
 
-    @Column(
-            name = "address",
-            columnDefinition = "VARCHAR(11)"
-    )
+    @Column(name = "address")
     private String address;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(Long contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
 
 }

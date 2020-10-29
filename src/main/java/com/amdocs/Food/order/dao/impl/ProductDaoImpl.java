@@ -21,7 +21,7 @@ public class ProductDaoImpl implements ProductDao {
 
     public Product getProductDetails(Long productId) {
 
-        return productRepository.findByIdAndIsActiveTrue(productId);
+        return productRepository.findByProductIdAndIsActiveTrue(productId);
     }
 
 //    public List<Category> getCategories() {

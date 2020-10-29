@@ -21,7 +21,7 @@ public class UserCartDTO {
     public UserCartDTO(UserCart userCart) {
 
         this.userId = userCart.getUserId();
-        Product product = productRepository.findByIdAndIsActiveTrue(userCart.getProductId());
+        Product product = productRepository.findByProductIdAndIsActiveTrue(userCart.getProductId());
         this.productName = product.getProductName();
         this.quantity=userCart.getQuantity();
 

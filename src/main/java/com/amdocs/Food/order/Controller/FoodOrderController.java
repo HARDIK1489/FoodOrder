@@ -4,20 +4,11 @@ import com.amdocs.Food.order.DTO.FoodMenuDTO;
 import com.amdocs.Food.order.DTO.OrderTrackDTO;
 import com.amdocs.Food.order.DTO.ProductDTO;
 import com.amdocs.Food.order.DTO.UserCartDTO;
-import com.amdocs.Food.order.Entity.Category;
-import com.amdocs.Food.order.Entity.Product;
-import com.amdocs.Food.order.Entity.UserCart;
-import com.amdocs.Food.order.Repository.CartRepository;
 import com.amdocs.Food.order.Service.FoodOrderService;
-import com.amdocs.Food.order.dao.FoodMenuDao;
-import com.amdocs.Food.order.dao.OrderDao;
-import com.amdocs.Food.order.dao.ProductDao;
-import com.amdocs.Food.order.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import lombok.extern.slf4j.Slf4j;
 
-import java.io.IOException;
 import java.util.List;
 
 @Slf4j
@@ -27,9 +18,6 @@ public class FoodOrderController {
 
     @Autowired
     FoodOrderService foodOrderService;
-
-    @Autowired
-    OrderDao orderDao;
 
     @GetMapping(value = "/menu/{categoryName}")
     @ResponseBody

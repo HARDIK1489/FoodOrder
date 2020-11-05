@@ -13,7 +13,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("api/foodOrder")
+@RequestMapping("/api/foodOrder")
 public class FoodOrderController {
 
     @Autowired
@@ -41,7 +41,6 @@ public class FoodOrderController {
     {
        return foodOrderService.cartItems(userId);
     }
-
 
     @GetMapping(value = "{userId}/placeOrder")
     @ResponseBody
